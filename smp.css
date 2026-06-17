@@ -1,0 +1,379 @@
+:root{
+  --ungu:#6d28d9;
+  --ungu2:#8b5cf6;
+  --ungu3:#a78bfa;
+  --putih:#ffffff;
+  --abu:#f8fafc;
+  --hitam:#1e293b;
+  --shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:
+  radial-gradient(circle at top left,#8b5cf6 0%,transparent 35%),
+  radial-gradient(circle at bottom right,#5b21b6 0%,transparent 35%),
+  linear-gradient(135deg,#4c1d95,#6d28d9,#8b5cf6);
+  padding-bottom:40px;
+}
+
+/* HEADER */
+
+header{
+  width:90%;
+  max-width:1100px;
+  margin:25px auto;
+  text-align:center;
+  padding:25px;
+
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(15px);
+
+  border-radius:25px;
+
+  box-shadow:var(--shadow);
+}
+
+.logo {
+  width: 220px;            /* Lebar persegi panjang yang sedang */
+  height: 95px;            /* Tinggi yang pas dan proporsional */
+  object-fit: contain;     /* Menjaga logo Primagama di dalam tetap tajam & tidak gepeng */
+  padding: 8px 15px;       /* Jarak dalam bingkai putih */
+  background-color: rgba(153, 27, 211, 0.342); /* Latar belakang putih berbentuk persegi panjang */
+  border-radius: 12px;     /* Lengkungan sudut yang rapi */
+  margin-bottom: 20px;     /* Jarak ke tulisan ABSENSI SISWA SMP */
+  border: none;            /* Menghapus total border lingkaran 45px lama */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Efek bayangan halus */
+}
+
+header h1{
+  color:white;
+  margin-bottom:8px;
+  font-size:2rem;
+}
+
+header p{
+  color:#f3f4f6;
+}
+
+/* CONTAINER */
+
+.container{
+  width:90%;
+  max-width:1100px;
+
+  margin:auto;
+
+  background:rgba(255,255,255,.96);
+
+  border-radius:25px;
+
+  padding:30px;
+
+  box-shadow:var(--shadow);
+}
+
+.hidden{
+  display:none !important;
+}
+
+h2{
+  color:var(--ungu);
+  margin-bottom:15px;
+}
+
+/* INPUT */
+
+input,
+select{
+  width:100%;
+
+  padding:14px;
+
+  border:2px solid #e2e8f0;
+
+  border-radius:12px;
+
+  margin-bottom:15px;
+
+  transition:.3s;
+}
+
+input:focus,
+select:focus{
+  outline:none;
+  border-color:var(--ungu2);
+  box-shadow:0 0 0 4px rgba(139,92,246,.15);
+}
+
+/* BUTTON UTAMA (Form Login & Kirim Absen) */
+
+button{
+  width:100%;
+
+  padding:14px;
+
+  margin-top:10px;
+
+  border:none;
+
+  border-radius:12px;
+
+  color:white;
+
+  cursor:pointer;
+
+  font-weight:600;
+
+  background:linear-gradient(
+    135deg,
+    var(--ungu),
+    var(--ungu2)
+  );
+
+  transition:.3s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+/* FIX TOMBOL DI DALAM TABEL: Berbentuk persegi panjang pipih & teks di tengah */
+table button {
+  width: 125px;           /* Lebar persegi panjang tombol */
+  padding: 8px 0;         /* Atas-bawah tipis/pipih agar seimbang */
+  margin-top: 0;          /* Reset margin atas bawaan button utama */
+  border-radius: 6px;     /* Lengkungan kotak yang rapi */
+  font-size: 13px;        /* Ukuran huruf di dalam tabel */
+  font-weight: 600;
+  transform: none;
+  display: inline-block;
+  text-align: center;
+}
+
+table button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+/* INFO */
+
+.info-card{
+  background:#f5f3ff;
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:20px;
+  border-left:5px solid var(--ungu);
+}
+
+/* DASHBOARD */
+
+.dashboard-card{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.card{
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+  color:white;
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.card span{
+  font-size:32px;
+  font-weight:bold;
+}
+
+.hadir{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+}
+
+.izin{
+  background:linear-gradient(135deg,#f59e0b,#d97706);
+}
+
+.sakit{
+  background:linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+.total{
+  background:linear-gradient(135deg,#6d28d9,#8b5cf6);
+}
+
+/* SECTION KELAS */
+
+.kelas-section{
+  margin-top:35px;
+}
+
+.kelas-section h2{
+  margin-bottom:15px;
+  padding-bottom:10px;
+  border-bottom:3px solid #ddd6fe;
+}
+
+/* TABLE */
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:25px;
+  overflow:hidden;
+  border-radius:15px;
+  background:white;
+  box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+th{
+  background:linear-gradient(
+    135deg,
+    var(--ungu),
+    var(--ungu2)
+  );
+
+  color:white;
+  padding:15px;
+}
+
+td{
+  padding:14px;
+  text-align:center;
+  border-bottom:1px solid #eee;
+  vertical-align: middle; /* Menjaga teks nama & tombol sejajar lurus di tengah */
+}
+
+tr:nth-child(even){
+  background:#faf7ff;
+}
+
+tr:hover{
+  background:#f3e8ff;
+}
+
+/* STATUS */
+
+.status-hadir{
+  color:#15803d;
+  font-weight:bold;
+}
+
+.status-izin{
+  color:#b45309;
+  font-weight:bold;
+}
+
+.status-sakit{
+  color:#b91c1c;
+  font-weight:bold;
+}
+
+/* HISTORY MODAL */
+
+.history-modal{
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  background:rgba(0,0,0,.5);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  z-index:99999; /* Memastikan melayang di atas semua elemen */
+}
+
+.history-content{
+  width:90%;
+  max-width:600px;
+
+  background:white;
+
+  border-radius:20px;
+
+  padding:25px;
+}
+
+.history-content h3{
+  margin-bottom:15px;
+  color:var(--ungu);
+}
+
+#historyBody{
+  max-height:350px;
+  overflow-y:auto;
+}
+
+.history-item{
+  background:#f8fafc;
+  padding:12px;
+  margin-bottom:10px;
+  border-left:4px solid var(--ungu);
+  border-radius:10px;
+}
+
+/* FIX TOMBOL TUTUP DI MODAL: Berbentuk persegi panjang proporsional */
+.history-content button {
+  width: auto;
+  min-width: 130px;
+  padding: 10px 20px;
+  margin: 15px auto 0 auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+  .container{
+    padding:20px;
+  }
+
+  header h1{
+    font-size:1.5rem;
+  }
+
+  table{
+    font-size:13px;
+  }
+
+  th,
+  td{
+    padding:10px;
+  }
+
+  .card span{
+    font-size:24px;
+  }
+
+  table button {
+    width: 90px;
+    font-size: 11px;
+    padding: 6px 0;
+  }
+  
+  .logo {
+    width: 180px;
+    height: 80px;
+  }
+
+}

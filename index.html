@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Absensi Siswa SMP</title>
+
+  <link rel="stylesheet" href="smp.css">
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB3HndiWnufUk-gMTRM2TLwdUaCETdDPkI",
+      authDomain: "absensi-smp-a1274.firebaseapp.com",
+      databaseURL: "https://absensi-smp-a1274-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "absensi-smp-a1274",
+      storageBucket: "absensi-smp-a1274.firebasestorage.app",
+      messagingSenderId: "181432063728",
+      appId: "1:181432063728:web:eb376fbaee0454eb94d435"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.database();
+  </script>
+</head>
+<body>
+
+<header>
+  <img src="logo primagama.jpeg" alt="Logo Primagama" class="logo">
+  <h1>ABSENSI SISWA SMP</h1>
+  <p>New Primagama Sunter Indah</p>
+</header>
+
+<div id="loginPage" class="container">
+  <h2>Login Sistem</h2>
+  
+  <label>Role</label>
+  <select id="roleSelect">
+    <option value="user">Siswa</option>
+    <option value="parent">Orang Tua</option>
+    <option value="admin">Admin</option>
+  </select>
+
+  <label>Password</label>
+  <input type="password" id="passwordInput" placeholder="Masukkan Password">
+
+  <button onclick="login()">MASUK</button>
+</div>
+
+<div id="userPage" class="container hidden">
+  <h2>Form Absensi</h2>
+  <input type="text" id="inputNama" placeholder="Nama Lengkap">
+
+  <select id="inputKelas">
+    <option value="">Pilih Kelas</option>
+    <option value="7">Kelas 7</option>
+    <option value="8">Kelas 8</option>
+    <option value="9">Kelas 9</option>
+  </select>
+
+  <select id="inputKeterangan">
+    <option value="Hadir">Hadir</option>
+    <option value="Izin">Izin</option>
+    <option value="Sakit">Sakit</option>
+  </select>
+
+  <button onclick="submitAbsensi()">Kirim Absensi</button>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<div id="adminPage" class="container hidden">
+  <div class="info-card">
+    <h2>Dashboard Monitoring</h2>
+    <p>Rekapitulasi Kehadiran Siswa</p>
+  </div>
+
+  <div class="filter-section" style="margin-bottom: 20px; background: #f4f4f4; padding: 12px; border-radius: 5px; display: flex; align-items: center; gap: 10px;">
+    <label for="filterTanggal" style="font-weight: bold; color: black;">Pilih Tanggal:</label>
+    <input type="date" id="filterTanggal" onchange="loadAbsensi()" style="padding: 6px; border-radius: 4px; border: 1px solid #ccc; font-family: inherit; margin-bottom: 0; width: auto; color: black;">
+  </div>
+
+  <div class="dashboard-card">
+    <div class="card hadir"><h3>Hadir</h3><span id="jumlahHadir">0</span></div>
+    <div class="card izin"><h3>Izin</h3><span id="jumlahIzin">0</span></div>
+    <div class="card sakit"><h3>Sakit</h3><span id="jumlahSakit">0</span></div>
+    <div class="card total"><h3>Total</h3><span id="jumlahTotal">0</span></div>
+  </div>
+
+  <div class="kelas-section">
+    <h2>Kelas 7</h2>
+    <table>
+      <thead>
+        <tr><th>Nama Siswa</th><th>Riwayat</th><th class="kolom-aksi">Aksi</th></tr>
+      </thead>
+      <tbody id="tableBody7"></tbody>
+    </table>
+  </div>
+
+  <div class="kelas-section">
+    <h2>Kelas 8</h2>
+    <table>
+      <thead>
+        <tr><th>Nama Siswa</th><th>Riwayat</th><th class="kolom-aksi">Aksi</th></tr>
+      </thead>
+      <tbody id="tableBody8"></tbody>
+    </table>
+  </div>
+
+  <div class="kelas-section">
+    <h2>Kelas 9</h2>
+    <table>
+      <thead>
+        <tr><th>Nama Siswa</th><th>Riwayat</th><th class="kolom-aksi">Aksi</th></tr>
+      </thead>
+      <tbody id="tableBody9"></tbody>
+    </table>
+  </div>
+
+  <div style="margin-top: 20px; display: flex; gap: 10px;">
+    <button id="btnExcel" onclick="downloadExcel()">Download Excel</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<div id="historyModal" class="history-modal hidden">
+  <div class="history-content">
+    <h3 id="historyNama">History Siswa</h3>
+    <div style="max-height: 250px; overflow-y: auto; margin-bottom: 15px;">
+      <table border="1" style="width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 0;">
+        <thead>
+          <tr style="background: #f4f4f4; color: black;">
+            <th style="padding: 8px; text-align: center;">Tanggal</th>
+            <th style="padding: 8px; text-align: center;">Keterangan</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody" style="color: black;"></tbody>
+      </table>
+    </div>
+    <button onclick="tutupHistory()">Tutup</button>
+  </div>
+</div>
+
+<script src="smp.js"></script>
+</body>
+</html>
